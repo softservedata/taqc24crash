@@ -119,6 +119,8 @@ public class SearchTest {
         List<WebElement> containers = driver.findElements(By.cssSelector("div#content div.col"));
         for (WebElement current : containers) {
             if (current.findElement(By.cssSelector("h4 > a")).getText().equals(name)) {
+            //if (current.findElement(By.xpath(".//h4/a")).getText().equals(name)) {
+                //`System.out.printf("***current = "+ current.getText());
                 result = current;
                 break;
             }
@@ -130,7 +132,7 @@ public class SearchTest {
         return result;
     }
 
-    //@Test
+    @Test
     public void findByCss() {
         // Precondition
         WebElement usd = driver.findElement(By.cssSelector("a[href='USD']"));
@@ -155,9 +157,11 @@ public class SearchTest {
         //
         // Check
         //WebElement price = driver.findElement(By.cssSelector("div#content div.col div:has(> h4 > a[href*='id=43']) span.price-new")); // id=43 Hardcode Invalid Solution
-        WebElement price = getProductByName("MacBook").findElement(By.cssSelector("span.price-new"));
+//        WebElement price = getProductByName("MacBook").findElement(By.cssSelector("span.price-new"));
         //WebElement price = getProductByName("MacBook").findElement(By.xpath(".//p[@class='price']"));
         //WebElement price = driver.findElement(By.cssSelector("#content > div:nth-child(8) > div:nth-child(2) > div > div:nth-child(2) > div.caption > h4 > a"));
+        //
+        WebElement price = getProductByName("iPhone").findElement(By.cssSelector("span.price-new"));
         //
         System.out.println("price.getText() = " + price.getText());
         //
@@ -169,14 +173,15 @@ public class SearchTest {
         //((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", price);
         presentationSleep(); // For Presentation ONLY
         //
-        Assertions.assertTrue(price.getText().contains("$602.00"));
+        //Assertions.assertTrue(price.getText().contains("$602.00"));
+        Assertions.assertTrue(price.getText().contains("$123.20"));
         //
         // Return to Previous State
         presentationSleep(); // For Presentation ONLY
         isTestSuccessful = true;
     }
 
-    @Test
+    //@Test
     public void findByXPath() {
         // Precondition
         // Choose Curency
